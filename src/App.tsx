@@ -1,6 +1,8 @@
 import { Toaster } from "react-hot-toast";
-import { Link } from "react-router-dom";
-import { Form, Input, Button,Layout } from "antd";
+import { Link, Route, Routes } from "react-router-dom";
+import { Form, Input, Button,Layout, List } from "antd";
+import Dashboard from "./layout/dashboard";
+import User from "./page/User";
 
 const { Header, Content, Footer } = Layout;
 
@@ -42,7 +44,7 @@ function App() {
       {/* MAIN CONTENT */}
       <div className="max-w-6xl mx-auto mt-10 px-4 text-center">
         <h1 className="text-4xl font-bold mb-4">Chào mừng đến với WEB2091</h1>
-        <Button type="primary">Click me</Button>
+        {/* <Button type="primary">Click me</Button>
         <Button type="default">Click me</Button>
         <Button type="dashed">Click me</Button>
         <Button type="link">Click me</Button>
@@ -63,9 +65,15 @@ function App() {
             </Form>
           </Content>
           <Footer>Footer</Footer>
-        </Layout>
+        </Layout> */}
+        <Dashboard/>
       </div>
-
+      <Routes>
+        <Route>
+         <Route path="/" element={<Dashboard/>} />
+         <Route path="/user" element={<User/>}/>
+        </Route>
+      </Routes>
       <Toaster />
     </>
   );
