@@ -1,9 +1,12 @@
 import { Toaster } from "react-hot-toast";
 import { Link } from "react-router-dom";
-import { Button } from "antd";
-import { Layout } from "antd";
+import { Form, Input, Button,Layout } from "antd";
 
 const { Header, Content, Footer } = Layout;
+
+ const onFinish = (values: any) => {
+    console.log(values);
+  };
 function App() {
   return (
     <>
@@ -47,7 +50,18 @@ function App() {
 
         <Layout>
           <Header style={{ color: "white" }}>Header</Header>
-          <Content style={{ padding: 20 }}>Content</Content>
+          <Content style={{ padding: 20 }}>
+           <Form onFinish={onFinish}>
+              <Form.Item label="Username" name="username">
+                <Input />
+              </Form.Item>
+              <Form.Item>
+                <Button htmlType="submit" type="primary">
+                  Submit
+                </Button>
+              </Form.Item>
+            </Form>
+          </Content>
           <Footer>Footer</Footer>
         </Layout>
       </div>
