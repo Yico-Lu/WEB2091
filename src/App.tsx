@@ -3,6 +3,7 @@ import { Link, Route, Routes } from "react-router-dom";
 import { Form, Input, Button,Layout, List } from "antd";
 import Dashboard from "./layout/dashboard";
 import User from "./page/User";
+import Lab2 from "./page/Lab2";
 
 const { Header, Content, Footer } = Layout;
 
@@ -67,6 +68,7 @@ function App() {
           <Footer>Footer</Footer>
         </Layout> */}
         <Dashboard/>
+        <Lab2/>
       </div>
       <Routes>
         <Route>
