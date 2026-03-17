@@ -7,7 +7,7 @@ import { Icategory } from "../interface/Story";
 
 
 export default function StoryForm() {
-   const { mutate, isPending, isSuccess } = useMutation({
+   const { mutate, isPending} = useMutation({
     mutationFn: async (values: Icategory) => {
       await axios.post("http://localhost:3000/categories", values);
     },
