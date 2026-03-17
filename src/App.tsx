@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Lab1 from "./page/Lab1";
 import Lab2 from "./page/Lab2";
 import Lab3 from "./page/Lab3";
+import Lab4 from "./page/Lab4";
 
 
 
@@ -66,7 +67,8 @@ function App() {
           </Content>
           <Footer>Footer</Footer>
         </Layout> */}
-        <Lab3/>
+        {/* <Lab3/> */}
+        <Lab4/>
       </div>
       {/* <Lab1/> */}
       {/* <Lab2/> */}

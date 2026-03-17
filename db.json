@@ -1,4 +1,26 @@
 {
-  "products": [],
+  "stories": [
+    {
+      "title": "onepice",
+      "author": "aaa",
+      "image": "clean-code.jpg",
+      "description": "aaaa",
+      "id": 1
+    }
+  ],
+  "categories": [
+    {
+      "title": "onpince",
+      "description": "aaa",
+      "active": true,
+      "id": 1
+    },
+    {
+      "title": "onpinceee",
+      "description": "aaa",
+      "active": true,
+      "id": 2
+    }
+  ],
   "users": []
 }
