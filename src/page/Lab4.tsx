@@ -3,11 +3,12 @@ import axios from "axios"
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { Icategory } from "../interface/Story";
+import { useEffect, useState } from "react";
 
 
 
 export default function StoryForm() {
-   const { mutate, isPending} = useMutation({
+   const { mutate, isPending } = useMutation({
     mutationFn: async (values: Icategory) => {
       await axios.post("http://localhost:3000/categories", values);
     },
@@ -19,6 +20,18 @@ export default function StoryForm() {
     },
   });
    
+  const [categories, setCategories] = useState<Icategory[]>([]);
+  useEffect(()=>{
+    const getAllCategories = async () =>{
+      try {
+        
+      } catch (error) {
+        
+      }
+    }
+  },[])
+
+
   const onFinish = (values: Icategory) => {
     mutate(values);
   };
