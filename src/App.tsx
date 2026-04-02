@@ -1,38 +1,30 @@
 import { Toaster } from "react-hot-toast";
 import { Link, Route, Routes } from "react-router-dom";
-import { useContext } from "react";
-
-import { UserContext } from "./context/UserContext";
-import { ThemeContext } from "./context/ThemeContext";
-
-import Lab1 from "./page/Lab1";
-import Lab2 from "./page/Lab2";
-import Lab3 from "./page/Lab3";
-import StoryForm from "./page/Lab4";
-import StoryList from "./page/lab5";
 import EditForm from "./page/Lab6";
+import { useContext } from "react";
+import { UserContext } from "./context/UserContext";
+import { Button } from "antd";
+import { ConfigProvider, theme as antdTheme } from "antd";
+import { ThemeContext } from "./context/ThemeContext";
+import Register from "./page/Lab8";
+import { useAuthStore } from "./stores/useAuthStore";
 
 function App() {
-  const userContext = useContext(UserContext);
-  const themeContext = useContext(ThemeContext);
+  const { user, logout } = useAuthStore();
 
-  if (!userContext || !themeContext) return null;
+  const contextThem = useContext(ThemeContext);
+  if (!contextThem) return null;
 
-  const { user, setUser } = userContext;
-  const { theme, toggleTheme } = themeContext;
+  const { theme, toggleTheme } = contextThem;
 
   return (
-    <div>
-      {/* NAVBAR */}
+    <>
       <nav className="bg-blue-600 text-white shadow">
         <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-
-          {/* LOGO */}
           <Link to="#" className="text-xl font-semibold">
-            WEB2091 App
+            <strong>WEB2091 App</strong>
           </Link>
 
-          {/* MENU */}
           <div className="hidden md:flex items-center space-x-8">
             <Link to="/" className="hover:text-gray-200">
               Trang chủ
@@ -45,73 +37,51 @@ function App() {
             </Link>
           </div>
 
-          {/* RIGHT */}
-          <div className="hidden md:flex items-center space-x-4">
-            <button
-              onClick={toggleTheme}
-              className={
-                theme === "dark"
-                  ? "bg-black text-white px-2 py-1 rounded text-sm"
-                  : "bg-white text-black px-2 py-1 rounded text-sm border"
-              }
-            >
-              {theme === "light" ? "Dark" : "Light"}
-            </button>
-
+          <div className="hidden md:flex items-center space-x-6">
             {user ? (
-              <div className="flex items-center gap-2">
-                <img
-                  src={user.avatar}
-                  className="w-8 h-8 rounded-full"
-                />
-                <span>{user.name}</span>
-
-                <button
-                  onClick={() => setUser(null)}
-                  className="bg-red-500 px-2 py-1 rounded text-sm"
-                >
+              <div>
+                <span>Email: {user?.email}</span>
+                <span>Đã đăng nhập</span>
+                <Button danger onClick={logout}>
                   Logout
-                </button>
+                </Button>
               </div>
             ) : (
-              <button
-                onClick={() =>
-                  setUser({
-                    name: "xuan dung tran",
-                    avatar:
-                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNmIX5KouXU3EM1okPBEAFbjcgUInV3GvuVA&s",
-                  })
-                }
-                className="bg-green-500 px-2 py-1 rounded text-sm"
-              >
-                Login
-              </button>
+              <span>Bạn chưa đăng nhập</span>
             )}
 
-            <Link to="#" className="hover:text-gray-200">
+            <Link to="/register" className="hover:text-gray-200">
               Đăng ký
             </Link>
-          </div>
 
+            <ConfigProvider
+              theme={{
+                algorithm:
+                  theme === "dark"
+                    ? antdTheme.darkAlgorithm
+                    : antdTheme.defaultAlgorithm,
+              }}
+            >
+              <div style={{ padding: 20 }}>
+                <Button onClick={toggleTheme}>
+                  {theme === "light" ? "Dark" : "Light"}
+                </Button>
+              </div>
+            </ConfigProvider>
+          </div>
         </div>
       </nav>
 
-      {/* MAIN */}
+      {/* MAIN CONTENT */}
       <div className="max-w-6xl mx-auto mt-10 px-4 text-center">
-
+        <h1 className="text-4xl font-bold mb-4">Chào mừng đến với WEB2091</h1>
         <Routes>
-          <Route path="/" element={<StoryList />} />
-          <Route path="/edit/:id" element={<EditForm />} />
+          <Route path="/edit/:id" element={<EditForm />}></Route>
+          <Route path="/register" element={<Register />}></Route>
         </Routes>
-
-        <h1 className="text-4xl font-bold mb-4">
-          Chào mừng đến với WEB2091
-        </h1>
-
       </div>
-
       <Toaster />
-    </div>
+    </>
   );
 }
 

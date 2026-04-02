@@ -44,5 +44,12 @@
       "id": 5
     }
   ],
-  "users": []
+  "users": [
+    {
+      "email": "xuandungg2601@gmail.com",
+      "password": "$2a$10$F0i/iWbUUwKdyL4yn5ogrO6MGc4gc.Cy9oY2Cuzk4LdYTaL6jafgC",
+      "username": "dung",
+      "id": 1
+    }
+  ]
 }
